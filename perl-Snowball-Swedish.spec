@@ -1,7 +1,7 @@
 %define module	Snowball-Swedish
 %define name	perl-%{module}
-%define version 1.01
-%define release %mkrel 3
+%define version 1.2
+%define release %mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -9,16 +9,16 @@ Release:	%{release}
 Summary:	Porters stemming algorithm for Swedish
 License:	GPL or Artistic
 Group:		Development/Perl
+Url:        http://search.cpan.org/dist/%{module}/
 Source:		http://search.cpan.org/CPAN/authors/id/A/AS/ASKSH/%{module}-%{version}.tar.bz2
-Url:            http://search.cpan.org/dist/%{module}/
 %if %{mdkversion} < 1010
 BuildRequires:	perl-devel
 %endif
 Requires:	locales-sv
-BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 Obsoletes:	perl-Lingua-Stem-Snowball-Se
 Provides:	perl-Lingua-Stem-Snowball-Se
+BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 The stem function takes a scalar as a parameter and stems the word according to
@@ -39,9 +39,6 @@ website: http://snowball.tartarus.org/.
 rm -rf %{buildroot} 
 %makeinstall_std
 
-mv %{buildroot}%{perl_vendorlib}/Lingua/Stem/Snowball/stemmer.pl \
-    %{buildroot}%{perl_vendorlib}/Lingua/Stem/Snowball/stemmer-Se.pl
-
 %clean 
 rm -rf %{buildroot} 
 
@@ -49,6 +46,5 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc Changes README
 %{perl_vendorlib}/Lingua
+%{_bindir}/stemmer-se.pl
 %{_mandir}/man3*/*
-
-
